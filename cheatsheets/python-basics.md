@@ -254,17 +254,35 @@ print(f"My name is {name} and I am {age} years old.")
 
 ### Format Specifiers
 
-| Specifier | Description | Example | Result |
-|---|---|---|---|
-| `:.2f` | Displays 2 decimal places. | `f"{3.14159:.2f}"` | `3.14` |
-| `:d` | Integer format. | `f"{10:d}"` | `10` |
-| `:b` | Binary format. | `f"{10:b}"` | `1010` |
-| `:x` | Hexadecimal format. | `f"{255:x}"` | `ff` |
-| `:o` | Octal format. | `f"{8:o}"` | `10` |
-| `:.1%` | Percentage format with 1 decimal place. | `f"{0.75:.1%}"` | `75.0%` |
-| `:>10` | Right-aligns within width 10. | `f"{'Hi':>10}"` | Right-aligned |
-| `:<10` | Left-aligns within width 10. | `f"{'Hi':<10}"` | Left-aligned |
-| `:^10` | Center-aligns within width 10. | `f"{'Hi':^10}"` | Centered |
+```bash
+>>> f"{3.14159:.2f}"
+'3.14'         # Displays 2 decimal places.
+
+>>> f"{10:d}"
+'10'        # Integer format.
+
+>>> f"{10:b}"
+'1010'       # Converts integer to binary.
+
+>>> f"{255:x}"
+'ff'        # Converts integer to hexadecimal.
+
+>>> f"{8:o}"
+'10'           # Converts integer to octal.
+
+>>> f"{0.75:.1%}"
+'75.0%'      # Displays percentage with 1 decimal place.
+
+>>> f"{'Hi':>10}"
+'        Hi'       # Right-aligns within width 10.
+
+>>> f"{'Hi':<10}"
+'Hi        '      # Left-aligns within width 10.
+
+>>> f"{'Hi':^10}"
+'    Hi    '         # Center-aligns within width 10.
+
+```
 
 ### Other Formatting Methods
 
