@@ -94,7 +94,7 @@ rmdir folder_name
 ```
 
 
-## 3. Reading and Editing Files
+##  Reading and Editing Files
 
 **Display file content**
 ```bash
@@ -134,7 +134,7 @@ vim file.txt
 ```
 
 
-## 4. Searching and Counting
+##  Searching and Counting
 
 **Find files and directories**
 ```bash
@@ -172,7 +172,7 @@ grep -iow "Harry" book.txt | wc -l
 ```
 
 
-## 5. Pipes and Text Processing
+##  Pipes and Text Processing
 
 **Pipe operator**  : Sends the output of one command as input to another command.
 ```bash
@@ -241,7 +241,7 @@ printf "Hello %s\n" "Kanika"
 ```
 Prints formatted text. `\n` adds a new line.
 
-## 6. File Permissions and Ownership
+## File Permissions and Ownership
 
 **Check file permissions**
 ```bash
@@ -282,7 +282,7 @@ sudo chown -R user:group folder/   # -R: change ownership recursively
 ```
 
 
-## 7. Process Management
+##  Process Management
 
 **Display running processes**
 ```bash
@@ -326,7 +326,7 @@ kill -CONT 1234   # -CONT: resume the process
 ```
 
 
-## 8. Parent and Child Processes
+##  Parent and Child Processes
 
 **Display process hierarchy**
 ```bash
@@ -347,7 +347,7 @@ ps -o pid,ppid,cmd
 pstree -sp 1234    # `-s` displays the parent process chain, and `-p` displays process IDs.
 ```
 
-## 9. System and Disk Information
+##  System and Disk Information
 
 **Check disk space**
 ```bash
@@ -402,7 +402,7 @@ echo $SHELL
 ```
 
 
-## 10. Networking Commands
+##  Networking Commands
 
 **Check network connectivity**
 ```bash
@@ -450,7 +450,7 @@ ssh username@server_ip
 ```
 
 
-## 11. Ubuntu Package Management
+##  Ubuntu Package Management
 
 **Update package information**
 ```bash
@@ -482,7 +482,7 @@ sudo apt autoremove
 ```
 
 
-## 12. Other Useful Commands
+## Other Useful Commands
 
 **Display command manual**
 ```bash
@@ -526,7 +526,7 @@ rsync -av source/ destination/
 
 
 
-## 13. Terminal Shortcuts
+##  Terminal Shortcuts
 
 | Shortcut | Use |
 |---|---|
@@ -540,7 +540,7 @@ rsync -av source/ destination/
 | `Tab` | Auto-complete commands and filenames |
 | `↑ / ↓` | Navigate command history |
 
-## 14. Important Linux Directories
+## Important Linux Directories
 
 | Directory | Purpose |
 |---|---|
