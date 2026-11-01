@@ -1,201 +1,315 @@
-# Git – Quick Revision Cheat Sheet
+# Git
+## Why Git?
+- Track code changes.
+- Restore previous versions.
+- Work with multiple developers.
+- Develop features separately using branches.
 
-## 1. Git Setup and Configuration
+## 1. Git and GitHub
+-  **Version Control:** Tracks changes in files and helps restore previous versions.
+- **Git:** Tracks changes in your code.
+- **GitHub:** Hosts Git repositories online for collaboration.
 
-| Command | Purpose |
-|---|---|
-| `git --version` | Check Git version |
-| `git config --global user.name "Name"` | Set username |
-| `git config --global user.email "email"` | Set email |
-| `git config --list` | View Git configuration |
-| `git init` | Initialize a Git repository |
-| `git clone URL` | Clone an existing repository |
-
-**Important flag:**
-- `--global` — Apply configuration to all repositories for the current user.
-
-## 2. Basic Git Workflow
-
-| Command | Purpose |
-|---|---|
-| `git status` | Check working tree status |
-| `git add file.py` | Add a file to staging |
-| `git add .` | Stage changes in the current directory |
-| `git add -A` | Stage all changes across the repository |
-| `git commit -m "message"` | Save staged changes |
-| `git commit -am "message"` | Stage and commit modified tracked files |
-| `git log` | View commit history |
-
-**Important flags:**
-- `-m` — Add commit message.
-- `-a` — Automatically stage modified and deleted tracked files; does not include new untracked files.
-
-## 3. Viewing Changes
-
-| Command | Purpose |
-|---|---|
-| `git diff` | Show unstaged changes |
-| `git diff --staged` | Show staged changes |
-| `git diff branch1 branch2` | Compare two branches |
-| `git log --oneline` | Show compact commit history |
-| `git log --oneline --graph --all` | View branch and commit history |
-| `git show` | Show details of the latest commit |
-| `git show commit_id` | Show details of a specific commit |
-
-**Important flags:**
-- `--staged` — Show changes added to staging.
-- `--oneline` — Display each commit in one line.
-- `--graph` — Show branch history graphically.
-- `--all` — Include all branches.
-
-## 4. Branch Management
-
-| Command | Purpose |
-|---|---|
-| `git branch` | List local branches |
-| `git branch branch_name` | Create a branch |
-| `git switch branch_name` | Switch to a branch |
-| `git switch -c branch_name` | Create and switch to a branch |
-| `git branch -d branch_name` | Delete a merged branch |
-| `git branch -D branch_name` | Force-delete a branch |
-| `git branch -a` | List local and remote-tracking branches |
-
-**Important flags:**
-- `-c` — Create a new branch.
-- `-d` — Safely delete a merged branch.
-- `-D` — Force-delete a branch.
-
-## 5. Merge and Rebase
-
-| Command | Purpose |
-|---|---|
-| `git merge branch_name` | Merge another branch into the current branch |
-| `git merge --abort` | Abort an ongoing merge |
-| `git rebase branch_name` | Reapply current branch commits on another branch |
-| `git rebase --abort` | Abort an ongoing rebase |
-| `git rebase --continue` | Continue after resolving conflicts |
-
-**Remember:**
-- **Merge:** Combines branch histories and may create a merge commit.
-- **Rebase:** Replays commits on top of another branch, creating new commit IDs.
-
-## 6. Remote Repository
-
-| Command | Purpose |
-|---|---|
-| `git remote -v` | Show remote repository URLs |
-| `git remote add origin URL` | Add a remote repository |
-| `git remote remove origin` | Remove a remote |
-| `git fetch origin` | Download remote changes without merging |
-| `git pull origin main` | Fetch and integrate remote changes |
-| `git push origin main` | Push commits to remote |
-| `git push -u origin branch_name` | Push branch and set upstream |
-| `git push` | Push to configured upstream branch |
-
-**Important flags:**
-- `-v` — Show detailed remote URLs.
-- `-u` — Set upstream tracking branch.
-
-## 7. Undoing Changes
-
-| Command | Purpose |
-|---|---|
-| `git restore file.py` | Discard unstaged changes in a file |
-| `git restore --staged file.py` | Remove file from staging |
-| `git reset --soft HEAD~1` | Undo latest commit but keep changes staged |
-| `git reset HEAD~1` | Undo latest commit and keep changes unstaged |
-| `git reset --hard HEAD~1` | Undo latest commit and discard its changes |
-| `git revert commit_id` | Create a new commit that reverses a previous commit |
-
-**Important flags:**
-- `--soft` — Keep changes staged.
-- `--mixed` — Keep changes unstaged (default).
-- `--hard` — Discard changes in the working tree and staging area.
-
-**Important:** `git reset --hard` can permanently discard uncommitted work. Use it carefully.
-
-## 8. Stash Changes
-
-| Command | Purpose |
-|---|---|
-| `git stash` | Temporarily save uncommitted changes |
-| `git stash list` | List saved stashes |
-| `git stash pop` | Apply latest stash and remove it |
-| `git stash apply` | Apply latest stash but keep it |
-| `git stash drop` | Delete latest stash |
-| `git stash clear` | Delete all stashes |
-
-**Useful flag:**
-- `-u` — Include untracked files.
-
+Checks whether Git is installed.
 ```bash
-git stash -u
+git --version
 ```
 
-## 9. Other Important Commands
-
-| Command | Purpose |
-|---|---|
-| `git rm file.py` | Remove file and stage its deletion |
-| `git mv old.py new.py` | Rename or move a tracked file |
-| `git tag` | List tags |
-| `git tag v1.0` | Create a tag |
-| `git tag -d v1.0` | Delete a local tag |
-| `git cherry-pick commit_id` | Apply a specific commit to the current branch |
-| `git blame file.py` | Show who changed each line |
-| `git clean -n` | Preview untracked files to be deleted |
-| `git clean -fd` | Delete untracked files and directories |
-
-**Important flags:**
-- `-n` — Dry run; show what would be deleted.
-- `-f` — Force deletion.
-- `-d` — Include untracked directories.
-
-## 10. .gitignore
-
-A `.gitignore` file specifies files and directories Git should ignore when detecting untracked changes.
-
-Example:
-
-```gitignore
-.venv/
-__pycache__/
-*.pyc
-.env
-*.log
+Installs Git on Ubuntu.
+```bash
+sudo apt update && sudo apt install git
 ```
 
-**Important:** `.gitignore` does not automatically stop tracking files that are already tracked by Git.
-
-## 11. Important Git Concepts
-
-| Term | Meaning |
-|---|---|
-| Repository | Project tracked by Git |
-| Working Directory | Where you modify files |
-| Staging Area | Where changes are prepared for commit |
-| Commit | A saved snapshot of changes |
-| Branch | Separate line of development |
-| HEAD | Points to the current commit |
-| Remote | Repository hosted on another server |
-| Merge Conflict | Occurs when Git cannot automatically combine changes |
-| `.git` | Hidden directory containing Git repository data |
-
-## 12. Common Git Workflow
-
+Sets your commit identity and displays your configuration.
 ```bash
-git clone URL
-cd project
-git switch -c feature-branch
+git config --global user.name "Kanika"
+git config --global user.email "kanika@example.com"
+git config --list
+```
+
+View or edit the configuration file:
+```bash
+cat ~/.gitconfig
+nano ~/.gitconfig
+```
+
+**GitHub setup:** Create a GitHub account and authenticate using SSH or a Personal Access Token (PAT).
+
+---
+
+## 2. Repository and Basic Workflow
+
+Starts a Git repository in the current folder.
+```bash
+git init
+```
+
+Downloads an existing repository to your computer.
+```bash
+git clone https://github.com/user/project.git
+```
+
+Shows which files are changed, staged, or untracked.
+```bash
 git status
-git add .
-git commit -m "Add feature"
-git push -u origin feature-branch
 ```
 
-To update your local main branch:
-
+Stages a file, then saves the staged changes as a commit.
 ```bash
-git switch main
+git add file.py
+git commit -m "Add feature"
+```
+Displays a short commit history.
+```bash
+git log --oneline
+```
+
+#### check changes
+shows changes that are not staged.
+```bash
+git diff
+```
+
+shows changes that are staged but not committed.
+```bash
+git diff --staged
+```
+
+displays details of the latest commit.
+```bash
+git show
+```
+
+### Git’s basic flow
+
+```text
+Working Directory  ──git add ──>  Staging Area     ── git commit ──>   Repository
+    edit files                   prepare changes                     save snapshot
+```
+
+---
+
+## 3. Connect to GitHub: Push and Pull
+
+Connects your local repository to GitHub and displays remote URLs.
+```bash
+git remote add origin https://github.com/user/project.git
+git remote -v
+```
+
+Uploads your commits to GitHub and sets the upstream branch.
+```bash
+git push -u origin main
+```
+
+Downloads and integrates changes from GitHub.
+```bash
 git pull origin main
 ```
+
+Downloads remote updates without integrating them into your current branch.
+```bash
+git fetch origin
+```
+
+```text
+Local Repository  ──git push──>  GitHub
+Local Repository  <──git pull──  GitHub
+Local Repository  <─git fetch──  GitHub (download only)
+```
+
+**Note:** `fetch` downloads; `pull` downloads and integrates; `push` uploads.
+
+---
+
+## 4. Branches
+
+A branch lets you work on a feature separately from `main`.
+
+
+Lists branches, then creates and switches to a new branch.
+```bash
+git branch
+git switch -c feature-login
+```
+
+Switches back to the `main` branch.
+```bash
+git switch main
+```
+
+Deletes a merged branch.
+```bash
+git branch -d feature-login
+```
+
+
+```text
+             feature-login
+            /             \
+main ──────●───────────────●──────
+           start          feature
+```
+
+## `git checkout` vs `git switch`
+
+| Command | Purpose |
+|---|---|
+| `git checkout branch-name` | Switch to an existing branch. |
+| `git checkout -b branch-name` | Create and switch to a new branch. |
+| `git checkout -- file.py` | Discard unstaged changes in a file. |
+| `git switch branch-name` | Modern command to switch branches. |
+| `git switch -c branch-name` | Modern command to create and switch branches. |
+
+**Note:** `git checkout` can switch branches and restore files. Modern Git separates these tasks into `git switch` and `git restore`.
+
+
+---
+
+## 5. Merge and Pull Request
+
+Merges `feature-login` into the current `main` branch.
+```bash
+git switch main
+git merge feature-login
+```
+
+Cancels a merge that is in progress.
+```bash
+git merge --abort
+```
+
+
+**Merge types:**
+- **Fast-forward:** Moves the branch pointer forward when possible.
+- **Merge commit:** Creates a commit joining the branch histories.
+
+```text
+main:           A ── B ──────────── M
+                       \           /
+feature-login:          C ── D ──
+                              merge
+```
+
+**Pull Request (PR):** A GitHub request to review and merge your branch into another branch.
+
+---
+
+## 6. Merge Conflicts
+
+A conflict occurs when Git cannot automatically combine changes, often because the same lines were edited.
+
+
+Finds files with conflicts.
+```bash
+git status
+```
+
+Git marks the conflicting sections in the file.
+```text
+<<<<<<< HEAD
+Your current change
+=======
+Incoming change
+>>>>>>> feature-login
+```
+
+After resolving the file, stages and commits the resolution.
+```bash
+# Edit the file and keep the correct content
+git add file.py
+git commit -m "Resolve merge conflict"
+```
+
+
+---
+
+## 7. Fork and Pull Request
+
+A **fork** is your own GitHub copy of someone else’s repository.
+
+
+Clones your fork, creates a branch, saves your changes, and uploads the branch.
+```bash
+git clone https://github.com/your-user/project.git
+git switch -c fix-bug
+git add .
+git commit -m "Fix bug"
+git push -u origin fix-bug
+```
+
+
+```text
+Original Repository
+        │
+      Fork
+        ▼
+Your GitHub Copy ──clone──> Your Computer
+        │                       │
+        │                   commit + push
+        │                       ▼
+        └──── Pull Request <── Your Branch
+```
+
+---
+
+## 8. Undo Changes
+
+Discards unstaged changes in a file.
+```bash
+git restore file.py
+```
+
+Unstages a file but keeps its changes.
+```bash
+git restore --staged file.py
+```
+
+Undo the latest commit while keeping changes staged.
+```bash
+git reset --soft HEAD~1
+```
+
+Undo the latest commit while keeping changes unstaged.
+```bash
+git reset HEAD~1
+```
+
+Creates a new commit that reverses an earlier commit.
+```bash
+git revert commit-id
+```
+
+
+**Note:** `git reset --hard` can permanently discard changes.
+
+---
+
+## 9. Important Differences
+
+| Concept | Remember |
+|---|---|
+| Git vs GitHub | Version control tool vs online hosting platform |
+| `add` vs `commit` | Stage changes vs save a snapshot |
+| `commit` vs `push` | Save locally vs upload to remote |
+| `fetch` vs `pull` | Download only vs download and integrate |
+| Fork vs clone | Online copy vs local copy |
+| Merge vs rebase | Join histories vs replay commits |
+| Branch vs repository | Development line vs whole project |
+| PR | Request to review and merge changes |
+
+---
+
+## 10. Diffrence between ``` git clone ```  and  ``` git remote add origin ```
+| Command | Purpose |
+|---|---|
+| `git clone URL` | Downloads a repository and connects it to the remote. |
+| `git remote add origin URL` | Connects an existing local repository to a remote. |
+| `git remote -v` | Displays remote URLs. |
+| `git push -u origin main` | Pushes and sets the upstream branch. |
+| `git push` | Pushes to the configured upstream branch. |
+| `git pull` | Fetches and integrates changes from the upstream branch. |
+
+
+
+**Flow:** Update `main` → create branch → make changes → commit → push → open a Pull Request.
