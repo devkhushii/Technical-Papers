@@ -1,255 +1,560 @@
-# Linux CLI – Quick Revision Cheat Sheet
+# Linux CLI 
 
-## 1. Navigation
+##  Shell Basics
 
-| Command | Purpose |
-|---|---|
-| `pwd` | Show current directory |
-| `ls` | List files and directories |
-| `cd folder` | Move into a directory |
-| `cd ..` | Move one directory up |
-| `cd ~` | Go to home directory |
-| `cd -` | Go to previous directory |
-| `cd /` | Go to root directory |
-| `tree` | Display directory structure |
+A shell is a program that accepts commands from users and passes them to the operating system for execution.
 
-**Important `ls` flags:**
+Bash (Bourne Again Shell) is one of the commonly used Linux shells.
 
+**Check the current shell**
 ```bash
-ls -l       # Detailed list
-ls -a       # Include hidden files
-ls -h       # Human-readable file sizes
-ls -t       # Sort by modification time
-ls -r       # Reverse order
-ls -lahtr   # Detailed, hidden, human-readable, oldest first
+echo $SHELL          # Display the default login shell
+ps -p $$             # Display the currently running shell process
+ps -p $$ -o comm=    # Display only the shell name
 ```
 
-## 2. File and Directory Management
+## Navigation Commands
 
-| Command | Purpose |
-|---|---|
-| `mkdir folder` | Create directory |
-| `mkdir -p a/b/c` | Create nested directories |
-| `touch file.txt` | Create an empty file |
-| `cp a.txt b.txt` | Copy a file |
-| `cp -r dir1 dir2` | Copy directory recursively |
-| `mv a.txt folder/` | Move a file |
-| `mv old.txt new.txt` | Rename a file |
-| `rm file.txt` | Delete a file |
-| `rm -r folder` | Delete directory and its contents |
-| `rmdir folder` | Delete an empty directory |
+**Check current directory**
+```bash
+pwd
+```
+
+**List files and directories**
+```bash
+ls
+ls -l       # -l: long format (permissions, owner, size, date)
+ls -a       # -a: show hidden files and directories
+ls -h       # -h: show file sizes in human-readable format
+ls -t       # -t: sort by modification time
+ls -r       # -r: reverse the sorting order
+ls -lahtr   # Combine flags: detailed, hidden, readable sizes, time-sorted, reversed
+ls *.txt       # *: matches any number of characters
+ls file?.txt   # ?: matches exactly one character
+ls .*          # Matches hidden filenames beginning with a dot
+```
+
+
+**Change directory**
+```bash
+cd folder_name
+cd ..       # ..: move one directory up
+cd ~        # ~: move to the home directory
+cd -        # -: return to the previous directory
+```
+
+
+**Display directory structure**
+```bash
+tree
+tree -L 2   # -L: limit the display to 2 directory levels
+```
+
+
+##  File and Directory Management
+
+**Create a directory**
+```bash
+mkdir folder_name
+mkdir -p parent/child   # -p: create parent directories if they don't exist
+```
+
+
+**Create an empty file**
+```bash
+touch file.txt
+```
+
+
+**Copy files and directories**
+```bash
+cp file.txt copy.txt
+cp -r folder1 folder2   # -r: copy directories recursively, including contents
+```
+
+
+**Move or rename files**
+```bash
+mv old.txt new.txt
+mv file.txt folder/
+```
+
+
+**Remove files and directories**
+```bash
+rm file.txt
+rm -r folder_name      # -r: remove directories and their contents recursively
+rm -i file.txt         # -i: ask for confirmation before removing
+```
+
+
+**Remove an empty directory**
+```bash
+rmdir folder_name
+```
+
 
 ## 3. Reading and Editing Files
 
-| Command | Purpose |
-|---|---|
-| `cat file.txt` | Display file content |
-| `less file.txt` | Read file page by page |
-| `head file.txt` | Show first 10 lines |
-| `head -n 3 file.txt` | Show first 3 lines |
-| `tail file.txt` | Show last 10 lines |
-| `tail -n 30 file.txt` | Show last 30 lines |
-| `tail -f app.log` | Watch new log entries |
-| `nano file.txt` | Edit a file |
-| `vim file.txt` | Open file in Vim |
+**Display file content**
+```bash
+cat file.txt
+```
+
+
+**Read a file page by page**
+```bash
+less file.txt
+```
+
+Displays file content one screen at a time. Press Space to move forward.
+```bash
+more file.txt
+```
+
+**Display the first lines**
+```bash
+head file.txt
+head -n 5 file.txt   # -n: display the first 5 lines
+```
+
+
+**Display the last lines**
+```bash
+tail file.txt
+tail -n 5 file.txt   # -n: display the last 5 lines
+tail -f log.txt      # -f: keep watching the file for new content
+```
+
+
+**Edit a file**
+```bash
+nano file.txt
+vim file.txt
+```
+
 
 ## 4. Searching and Counting
 
-| Command | Purpose |
-|---|---|
-| `find . -name "*.py"` | Find Python files |
-| `find ~ -iname "*java*"` | Find names containing Java |
-| `grep "error" file.txt` | Search text in a file |
-| `grep -i "error" file.txt` | Case-insensitive search |
-| `grep -n "error" file.txt` | Show matching line numbers |
-| `grep -r "error" .` | Search recursively |
-| `wc -l file.txt` | Count lines |
-| `wc -w file.txt` | Count words |
-| `wc -c file.txt` | Count bytes |
-
-**Important `grep` flags:**
-- `-i` — Ignore case.
-- `-n` — Show line numbers.
-- `-r` — Search recursively.
-- `-w` — Match whole words.
-- `-o` — Print only matched text.
-
+**Find files and directories**
 ```bash
-grep -ow "Harry" book.txt | wc -l
+find . -name "file.txt"       # -name: search by exact filename pattern
+find . -type f                # -type f: search only for files
+find . -type d                # -type d: search only for directories
+find . -name "*.py"           # *.py: find files ending with .py
+find ~ iname '*java*'         # Searches the home directory for filenames containing java. -iname makes the search case-insensitive.
 ```
+
+
+**Search for text inside files**
+```bash
+grep "hello" file.txt
+grep -i "hello" file.txt      # -i: ignore uppercase/lowercase differences
+grep -n "hello" file.txt      # -n: display matching line numbers
+grep -r "hello" folder/       # -r: search inside files in a directory recursively
+grep -w "hello" file.txt      # -w: match the complete word only
+grep -o "hello" file.txt      # -o: display only the matching text
+```
+
+
+**Count lines, words and characters**
+```bash
+wc file.txt
+wc -l file.txt    # -l: count lines
+wc -w file.txt    # -w: count words
+wc -c file.txt    # -c: count bytes
+```
+
+
+**Count occurrences of a word**
+```bash
+grep -iow "Harry" book.txt | wc -l
+```
+
 
 ## 5. Pipes and Text Processing
 
-| Command | Purpose |
-|---|---|
-| `command1 \| command2` | Pass output to another command |
-| `>` | Redirect output and overwrite file |
-| `>>` | Append output to file |
-| `sort file.txt` | Sort lines |
-| `sort file.txt \| uniq` | Remove consecutive duplicate lines |
-| `awk '{print $1}' file.txt` | Print first column |
-| `sed 's/old/new/g' file.txt` | Replace text |
-| `xargs` | Pass input as command arguments |
-
-**Examples:**
-
+**Pipe operator**  : Sends the output of one command as input to another command.
 ```bash
-ps aux | grep firefox
+ls | wc -l
 ```
 
+
+**Redirect output** : Saves command output into a file.
 ```bash
-cat names.txt | sort | uniq
+ls > output.txt      # >: write output and overwrite existing content
+ls >> output.txt     # >>: append output without overwriting existing content
 ```
 
+
+**Sort content**
 ```bash
-echo "Hello" > file.txt
-echo "World" >> file.txt
+sort names.txt
+sort -r names.txt    # -r: sort in reverse order
+sort -n numbers.txt  # -n: sort numerically instead of alphabetically
 ```
+
+
+**Remove duplicate adjacent lines**
+```bash
+uniq names.txt
+uniq -c names.txt    # -c: display the count of each repeated line
+```
+
+
+**Extract columns using awk**
+```bash
+awk '{print $1}' file.txt
+awk '{print $2}' file.txt    # $2: display the second column
+awk '{print $1, $3}' file.txt
+```
+
+
+**Replace text using sed**
+```bash
+sed 's/old/new/' file.txt    # replace first occurrence of old with new in each line
+sed 's/old/new/g' file.txt   # g: replace all occurrences in each line
+```
+**Display a Specific Range of Lines**
+```bash 
+sed -n '100,200p' book.txt   # Displays lines 100 to 200. -n prevents automatic printing, and p prints the selected lines.
+```
+
+**Count Unique Words in a File**
+```bash
+grep -oE '[[:alnum:]]+' book.txt | tr '[:upper:]' '[:lower:]' | sort -u | wc -l
+```
+- grep -oE: Extracts individual words using a pattern.
+- tr: Converts uppercase letters to lowercase.
+- sort -u: Sorts words and removes duplicates.
+- wc -l: Counts the unique words.
+
+**Pass output as arguments using xargs**
+```bash
+echo "file1.txt file2.txt" | xargs rm      # Converts input into arguments for another command.
+```
+
+
+**Display formatted output**
+```bash
+printf "Hello %s\n" "Kanika"
+```
+Prints formatted text. `\n` adds a new line.
 
 ## 6. File Permissions and Ownership
 
+**Check file permissions**
 ```bash
 ls -l
-chmod 755 file.txt
-chmod -R 755 folder/
-chown user file.txt
-sudo chown user:group file.txt
 ```
 
-**Permission numbers:**
+**Change permissions**
+```bash
+chmod 755 script.sh
+chmod -R 755 folder/    # -R: apply permissions recursively to contents
+```
 
-| Number | Permission |
-|---|---|
-| `4` | Read (r) |
-| `2` | Write (w) |
-| `1` | Execute (x) |
-| `7` | Read + Write + Execute |
-| `5` | Read + Execute |
-| `6` | Read + Write |
 
-Example: `chmod 755 file.txt`
+**Permission numbers**
 
-- Owner: `7` = rwx
-- Group: `5` = r-x
-- Others: `5` = r-x
+| Number | Permission | Meaning |
+|---|---|---|
+| 4 | Read (r) | View content |
+| 2 | Write (w) | Modify content |
+| 1 | Execute (x) | Run a file or access a directory |
+| 7 | rwx | Read, write and execute |
+| 6 | rw- | Read and write |
+| 5 | r-x | Read and execute |
 
-**Important flags:**
-- `-R` — Apply changes recursively to all files and subdirectories.
+**Example:**
+```bash
+chmod 755 script.sh
+```
+- Owner: `7` = read, write, execute.
+- Group: `5` = read, execute.
+- Others: `5` = read, execute.
+
+**Change ownership**
+```bash
+sudo chown user file.txt
+sudo chown user:group file.txt
+sudo chown -R user:group folder/   # -R: change ownership recursively
+```
+
 
 ## 7. Process Management
 
-| Command | Purpose |
-|---|---|
-| `ps` | Show processes |
-| `ps aux` | Show all running processes |
-| `ps -ef` | Detailed process list |
-| `ps -p PID` | Show a specific process |
-| `top` | Monitor running processes |
-| `htop` | Interactive process monitor |
-| `pgrep firefox` | Find process ID by name |
-| `kill PID` | Terminate a process |
-| `kill -9 PID` | Forcefully terminate a process |
-| `kill -STOP PID` | Pause a process |
-| `kill -CONT PID` | Resume a process |
-
-**Find PID and PPID:**
-
+**Display running processes**
 ```bash
-ps -o pid,ppid,cmd -p PID
+ps
+ps aux   # display all process in detailed format
 ```
 
-- `PID` — Process ID.
-- `PPID` — Parent Process ID.
 
-**Find and terminate a process using a pipe:**
-
+**Display selected process details**
 ```bash
-ps aux | grep firefox
-ps aux | grep firefox | awk '{print $2}' | xargs kill
+ps -p 1234                 # -p: select a process using its PID
+ps -o pid,ppid,cmd -p 1234 # -o: choose which columns to display
+ps -eo pid,comm,%cpu --sort=-%cpu | head -n 4  # Display the top 3 processes by CPU usage
 ```
 
-**Important flags:**
-- `-o` — Select columns to display.
-- `-p` — Specify process ID.
-- `-9` — Force kill.
 
-## 8. System Information and Disk Usage
+**Monitor processes continuously**
+```bash
+top
+htop
+```
 
-| Command | Purpose |
-|---|---|
-| `df -h` | Show disk space |
-| `du -sh folder/` | Show folder size |
-| `free -h` | Show memory usage |
-| `uname -a` | Show system information |
-| `uname -m` | Show machine architecture |
-| `date` | Show current date and time |
-| `whoami` | Show current username |
-| `groups` | Show user's groups |
-| `lspci` | List PCI devices |
-| `printenv` | Show environment variables |
-| `echo $SHELL` | Show current shell |
+**Find process IDs**
+```bash
+pgrep firefox
+pgrep -f firefox    # -f: search the complete command line
+```
+.
 
-## 9. Networking
+**Terminate a process**
+```bash
+kill 1234
+kill -9 1234    # -9: forcefully terminate the process
+```
 
-| Command | Purpose |
-|---|---|
-| `ping google.com` | Check network connectivity |
-| `host google.com` | Find domain IP addresses |
-| `ip addr` | Show IP addresses |
-| `ss -tunap` | Show network connections and processes |
-| `ss -tuln` | Show listening TCP/UDP ports |
-| `ss -tulnp` | Show listening ports with process details |
-| `ssh user@host` | Connect to a remote machine |
 
-**Find process using a particular port:**
+**Stop and continue a process**
+```bash
+kill -STOP 1234   # -STOP: pause the process
+kill -CONT 1234   # -CONT: resume the process
+```
 
+
+## 8. Parent and Child Processes
+
+**Display process hierarchy**
+```bash
+pstree -p   # Displays processes in a tree structure. `-p` shows process IDs.
+
+```
+
+**Display parent and child process details**
+```bash
+ps -o pid,ppid,cmd
+```
+- `PID`: Process ID.
+- `PPID`: Parent Process ID.
+- `CMD`: Command that started the process.
+
+**Display process ancestry**
+```bash
+pstree -sp 1234    # `-s` displays the parent process chain, and `-p` displays process IDs.
+```
+
+## 9. System and Disk Information
+
+**Check disk space**
+```bash
+df -h   # `-h` shows sizes in human-readable units.
+```
+Displays available and used disk space. 
+
+**Check directory size**
+```bash
+du -sh folder/         # `-s` displays only the total size
+```
+
+**Check memory usage** 
+Displays RAM and swap memory usage. 
+```bash
+free -h
+```
+
+**Display system information**
+Displays detailed operating system and kernel information. `-a` means all available information.
+```bash
+uname -a
+```
+
+
+**Display current date and time**
+```bash
+date
+```
+
+**Display current username**
+```bash
+whoami
+```
+
+**Display user groups**
+```bash
+groups
+```
+
+
+**Display hardware information**
+```bash
+lspci
+```
+
+
+**Display environment variables**
+```bash
+printenv
+echo $SHELL
+```
+
+
+## 10. Networking Commands
+
+**Check network connectivity**
+```bash
+ping google.com
+ping -c 4 google.com    # -c: send only 4 packets
+```
+**Display network congifguration**
+```bash
+ifconfig
+```
+
+**Look up domain IP addresses**
+Finds the IP addresses associated with a domain name.
+```bash
+host google.com
+```
+
+
+**Display IP addresses**
+```bash
+ip addr
+```
+
+**Check network connections and ports**
+```bash
+ss -tuln
+ss -tulnp
+```
+- `-t`: show TCP connections.
+- `-u`: show UDP connections.
+- `-l`: show listening sockets.
+- `-n`: show numeric addresses and port numbers.
+- `-p`: show the process using the socket (may require `sudo`).
+
+**Check a specific port**
+Checks whether a process is listening on port `5432`.
 ```bash
 sudo ss -tulnp | grep :5432
 ```
 
-## 10. Package Management (Ubuntu)
 
-| Command | Purpose |
+**Connect to a remote machine**
+```bash
+ssh username@server_ip
+```
+
+
+## 11. Ubuntu Package Management
+
+**Update package information**
+```bash
+sudo apt update
+```
+
+
+**Upgrade installed packages**
+```bash
+sudo apt upgrade
+```
+
+
+**Install a package**
+```bash
+sudo apt install package_name
+```
+
+
+**Remove a package**
+```bash
+sudo apt remove package_name
+```
+
+
+**Remove unused packages**
+```bash
+sudo apt autoremove
+```
+
+
+## 12. Other Useful Commands
+
+**Display command manual**
+```bash
+man ls
+```
+
+**Display command history**
+```bash
+history
+```
+
+
+**Find command location**
+```bash
+which python
+```
+
+
+**Find command information**
+```bash
+whereis python
+```
+
+
+**Download a file**
+```bash
+wget https://example.com/file.zip
+```
+
+**Start a Python server**
+```bash
+python3 -m http.server 8000
+```
+
+**Copy files between locations**
+```bash
+rsync -av source/ destination/
+```
+- `-a`: archive mode; preserves important file properties.
+- `-v`: verbose; displays details while copying.
+
+
+
+## 13. Terminal Shortcuts
+
+| Shortcut | Use |
 |---|---|
-| `sudo apt update` | Update package information |
-| `sudo apt upgrade` | Upgrade installed packages |
-| `sudo apt install htop` | Install a package |
-| `sudo apt remove nginx` | Uninstall a package |
-| `sudo apt autoremove` | Remove unused dependencies |
-
-## 11. Other Useful Commands
-
-| Command | Purpose |
-|---|---|
-| `man command` | Open command manual |
-| `history` | Show previously executed commands |
-| `which python` | Show command location |
-| `whereis python` | Locate binary and related files |
-| `wget URL` | Download a file |
-| `rsync -av source/ destination/` | Synchronize files and directories |
-
-## 12. Important Terminal Shortcuts
-
-| Shortcut | Purpose |
-|---|---|
-| `Ctrl + C` | Stop running command |
-| `Ctrl + Z` | Suspend running process |
-| `Ctrl + D` | Exit terminal/input |
+| `Ctrl + C` | Stop the running command |
+| `Ctrl + Z` | Suspend the running process |
+| `Ctrl + D` | Exit the current shell or send EOF |
+| `Ctrl + L` | Clear the terminal screen |
+| `Ctrl + A` | Move to the beginning of the line |
+| `Ctrl + E` | Move to the end of the line |
 | `Ctrl + R` | Search command history |
-| `Tab` | Auto-complete command or path |
+| `Tab` | Auto-complete commands and filenames |
 | `↑ / ↓` | Navigate command history |
 
-## 13. Important Linux Directories
+## 14. Important Linux Directories
 
 | Directory | Purpose |
 |---|---|
-| `/` | Root directory |
-| `/bin` | Essential commands |
-| `/sbin` | System administration commands |
-| `/etc` | Configuration files |
-| `/home` | Users' home directories |
-| `/root` | Root user's home directory |
-| `/tmp` | Temporary files |
-| `/usr` | User applications and utilities |
-| `/var` | Logs and frequently changing data |
-| `/opt` | Optional software |
+| `/` | Root directory; starting point of the filesystem |
+| `/home` | Contains users' personal directories |
+| `/root` | Home directory of the root user |
+| `/etc` | Contains system configuration files |
+| `/bin` | Contains essential user commands |
+| `/usr` | Contains user applications and utilities |
+| `/var` | Contains changing data such as logs |
+| `/tmp` | Stores temporary files |
+| `/dev` | Contains device files |
+| `/proc` | Contains process and kernel information |
+| `/sbin` | Contains system administration commands. |
+| `/opt` | Stores optional or third-party software. |
+| `/var/log` | Stores system and application log files. |
+
