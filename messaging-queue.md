@@ -152,17 +152,7 @@ There are two common ways applications communicate.
 - **Consumer:** Receives and processes messages.
 - **Message Broker:** Manages message delivery and routing between applications.
 
-### Simple Diagram
-
-```text
-+----------+       +------------------+       +----------+
-| Producer | ----> | Message Broker    | ----> | Consumer |
-+----------+       |  +------------+  |       +----------+
-                   |  | Message    |  |
-                   |  | Queue      |  |
-                   |  +------------+  |
-                   +------------------+
-```
+![Message Queue](https://media.geeksforgeeks.org/wp-content/uploads/20250930085200425394/message_queue_.webp)
 
 ---
 
@@ -190,25 +180,13 @@ In Point-to-Point messaging, a producer sends a message to a queue. The message 
 ![Point to point meassengaing](https://media.geeksforgeeks.org/wp-content/uploads/20261019103754450740/message_quese.webp)
 
 
-
 **Example:** An order message is placed in a queue. One available worker receives and processes that order.
 
 ### 9.2 Publish-Subscribe Messaging
 
 In Publish-Subscribe messaging, a publisher sends a message to a topic. Multiple subscribers can receive the message.
 
-```text
-                         +------------------+
-                         |      Topic       |
-                         +------------------+
-                           /       |       \
-                          /        |        \
-                         v         v         v
-                    +---------+ +---------+ +---------+
-                    |Subscriber| |Subscriber| |Subscriber|
-                    |    A    | |    B    | |    C    |
-                    +---------+ +---------+ +---------+
-```
+![Publish-subscribe Messaging](https://media.geeksforgeeks.org/wp-content/uploads/20261019103844116047/message_quese_2.webp)
 
 **Example:** When an order is placed, the order service publishes an event. The inventory, notification and analytics services can all receive that event through their subscriptions.
 
@@ -243,8 +221,6 @@ If the message is not acknowledged, it may be delivered again, depending on the 
 ---
 
 ## 11. Popular Messaging Tools and Technologies
-
-Different messaging tools are designed for different needs. Some focus on traditional message queues, while others are designed for event streaming or managed cloud messaging.
 
 
 ### 11.1 RabbitMQ
@@ -322,28 +298,7 @@ Connecting every application directly to every other application can become diff
 
 An EMB provides a common communication layer and reduces the number of direct connections required.
 
-### Simple Diagram
 
-```text
-+------------------+       +------------------+
-| Customer System  |       | Inventory System |
-+------------------+       +------------------+
-          \                       /
-           \                     /
-            v                   v
-        +--------------------------------+
-        |      Enterprise Message Bus    |
-        |                                |
-        |  Routing | Transformation      |
-        |  Message Delivery              |
-        +--------------------------------+
-            ^                   ^
-           /                     \
-          /                       \
-+------------------+       +------------------+
-| Payment System   |       | Delivery System  |
-+------------------+       +------------------+
-```
 
 ![EMB](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRapHrpyf6n8au_v4Nlc8-H5mr2Op7lwiy3LSlN9xzaS47RShjg9BUMayg&s=10)
 
@@ -358,7 +313,7 @@ An EMB provides a common communication layer and reduces the number of direct co
 
 ### Main Functions of EMB
 
-| Function | Simple Explanation |
+| Function |  Explanation |
 |---|---|
 | **Message Routing** | Sends messages to the correct application. |
 | **Message Transformation** | Changes message data into a format the receiver can understand. |
@@ -408,16 +363,16 @@ The organization pays for the resources it uses and can increase or decrease the
                       |
                       v
           +-------------------------+
-          | Cloud Provider           |
-          |                           |
-          | Virtual Machines          |
-          | Storage                   |
-          | Networking                |
+          | Cloud Provider          |
+          |                         |
+          | Virtual Machines        |
+          | Storage                 |
+          | Networking              |
           +-------------------------+
                       |
                       v
           +-------------------------+
-          | Run Applications         |
+          | Run Applications        |
           +-------------------------+
 ```
 
@@ -485,6 +440,8 @@ An Enterprise Message Bus helps connect applications across an organization, whi
 Together, messaging queues, enterprise messaging and cloud infrastructure help build flexible and scalable distributed systems.
 
 ## References
+https://youtu.be/sKXCTtGdxWo?si=7o8FZ410tltWzQWd
+
 https://cs.lmu.edu/~ray/notes/messagepassing/
 
 https://azure.microsoft.com/en-in/resources/cloud-computing-dictionary/what-is-middleware
