@@ -52,66 +52,50 @@ array('i', [10, 20, 30])
 
 ## 4. Adding Elements
 
-| Method | Purpose |
-|---|---|
-| `append(x)` | Add one element at the end |
-| `insert(i, x)` | Add element at a specific index |
-| `extend(iterable)` | Add multiple elements |
-
 ```python
 >>> numbers = [10, 20, 30]
->>> numbers.append(40)
+>>> numbers.append(40)     # Add one element at the end
 >>> numbers
 [10, 20, 30, 40]
 
->>> numbers.insert(1, 15)
+>>> numbers.insert(1, 15)    # Add element at a specific index
 >>> numbers
 [10, 15, 20, 30, 40]
 
->>> numbers.extend([50, 60])
+>>> numbers.extend([50, 60])     # Add multiple elements 
 >>> numbers
 [10, 15, 20, 30, 40, 50, 60]
 ```
 
 ## 5. Removing Elements
 
-| Method | Purpose |
-|---|---|
-| `remove(x)` | Remove first occurrence of a value |
-| `pop()` | Remove and return last element |
-| `pop(i)` | Remove and return element at index |
-| `clear()` | Remove all elements |
-
 ```python
 >>> numbers = [10, 20, 30, 40]
->>> numbers.remove(20)
+>>> numbers.remove(20)        # Remove first occurrence of a value 
 >>> numbers
 [10, 30, 40]
 
->>> numbers.pop()
+>>> numbers.pop()           # Remove and return last element
 40
->>> numbers.pop(0)
+>>> numbers.pop(0)         # Remove and return element at index
 10
 
 >>> numbers
 [30]
+
+>>> numbers.clear()       # Remove all elements
 ```
 
 ## 6. Searching and Counting
 
-| Method | Purpose |
-|---|---|
-| `index(x)` | Find index of first occurrence |
-| `count(x)` | Count occurrences |
-| `in` | Check whether an element exists |
 
 ```python
 >>> numbers = [10, 20, 30, 20]
->>> numbers.index(20)
+>>> numbers.index(20)        # Find index of first occurrence
 1
->>> numbers.count(20)
+>>> numbers.count(20)        # Count occurrences
 2
->>> 30 in numbers
+>>> 30 in numbers           # Check whether an element exists 
 True
 >>> 50 in numbers
 False
@@ -121,53 +105,38 @@ False
 
 ```python
 >>> numbers = [40, 10, 30, 20]
->>> numbers.sort()
+>>> numbers.sort()       # Sort original list 
 >>> numbers
 [10, 20, 30, 40]
 
->>> numbers.sort(reverse=True)
+>>> numbers.sort(reverse=True)   
 >>> numbers
 [40, 30, 20, 10]
 
->>> sorted(numbers)
+>>> sorted(numbers)      # Return a new sorted list
 [10, 20, 30, 40]
 
->>> numbers.reverse()
+>>> numbers.reverse()     # Reverse original list
 >>> numbers
 [20, 30, 10, 40]
 ```
 
-| Method | Purpose |
-|---|---|
-| `sort()` | Sort original list |
-| `sorted()` | Return a new sorted list |
-| `reverse()` | Reverse original list |
-| `reversed()` | Return a reverse iterator |
-
 ## 8. Useful Built-in Functions
 
-| Function | Purpose |
-|---|---|
-| `len(arr)` | Number of elements |
-| `min(arr)` | Smallest element |
-| `max(arr)` | Largest element |
-| `sum(arr)` | Sum of elements |
-| `any(arr)` | True if at least one element is truthy |
-| `all(arr)` | True if all elements are truthy |
 
 ```python
 >>> numbers = [10, 20, 30, 40]
->>> len(numbers)
+>>> len(numbers)   # Number of elements
 4
->>> min(numbers)
+>>> min(numbers)   # Smallest element
 10
->>> max(numbers)
+>>> max(numbers)   #  Largest element
 40
->>> sum(numbers)
+>>> sum(numbers)       # Sum of elements
 100
->>> any(numbers)
+>>> any(numbers)      # True if at least one element is truthy
 True
->>> all(numbers)
+>>> all(numbers)         # True if all elements are truthy
 True
 ```
 
