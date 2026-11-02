@@ -367,9 +367,16 @@ free -h
 ```
 
 **Display system information**
-Displays detailed operating system and kernel information. `-a` means all available information.
 ```bash
-uname -a
+uname -a    # All information
+uname -s    # Kernel name
+uname -n    # Hostname
+uname -r    # Kernel release
+uname -v    # Kernel version
+uname -m    # Machine architecture
+uname -p    # Processor type
+uname -i    # Hardware platform
+uname -o    # Operating system
 ```
 
 
@@ -391,7 +398,15 @@ groups
 
 **Display hardware information**
 ```bash
-lspci
+lspci       # List all PCI devices
+lspci -v    # Detailed information
+lspci -vv   # More detailed information
+lspci -nn   # Device names + numeric IDs
+lspci -k    # Kernel drivers
+lspci -t    # Tree structure
+lspci -n    # Numeric IDs only
+lspci -s    # Specific device
+lspci -m    # architecture
 ```
 
 
