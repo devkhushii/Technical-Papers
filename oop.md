@@ -411,6 +411,7 @@ Parent class
 Class A
 >>> 
 ```
+<<<<<<< HEAD
 
 ### `super()` Function
 - `super()` is used to access methods and constructors of the parent class from the child class.
@@ -1510,3 +1511,5 @@ Khushi
 **Note:** Type annotations in dataclasses do not automatically enforce runtime type checking.
 
 ---
+=======
+>>>>>>> 7f2a0f688ec77140d838e790d6e6c9d4dd4de952
