@@ -59,15 +59,15 @@ student1 = Student()         # object, here student1 is the reference of object
 
 ## Types of methods
 
-### Instance method
+### 1. Instance method
 - An instance method works with the data of an individual object.
 - It takes `self` as its first parameter
 
-### class method
+### 2. class method
 - A class method works with the class rather than a particular object.
 - It uses the `@classmethod` decorator and takes `cls` as its first parameter.
 
-### static method
+### 3. static method
 - A static method is a method that doesn't automatically receive self or cls.
 - It uses the `@staticmethod` decorator.
 - A utility method related to class but doesn't access its instance or class data.
@@ -121,13 +121,13 @@ print(student2.name)
 ```
 ## Types of Constructor
 
-### Non-Parameterized (default) constructor
+### 1. Non-Parameterized (default) constructor
 - if don't define `__init__` at all, python automatically provides default do-nothing constructor behind the scences.
 
-### Parameterized constructor
+### 2. Parameterized constructor
 - Takes parameters to intialize object at creation time.
 
-### Copy constructor
+### 3. Copy constructor
 - A copy constructor creates a new object by copying the data of an existing object.
 - both objects have the same data but stored as separate objects.
 - python does not have built in copy constructor ; we can implement using a class method or the copy module.
@@ -411,7 +411,6 @@ Parent class
 Class A
 >>> 
 ```
-<<<<<<< HEAD
 
 ### `super()` Function
 - `super()` is used to access methods and constructors of the parent class from the child class.
@@ -463,20 +462,16 @@ class A:
     def show(self):
         print("Class A")
 
-
 class B(A):
     def show(self):
         print("Class B")
-
 
 class C(A):
     def show(self):
         print("Class C")
 
-
 class D(B, C):
     pass
-
 
 d = D()
 d.show()
@@ -650,7 +645,6 @@ print(obj.add(10))
 ---
 
 # Abstraction
-
 - Abstraction means hiding implementation details and showing only the essential features to the user.
 - It focuses on what an object does rather than how it does it.
 - In Python, abstraction can be implemented using abstract classes and abstract methods.
@@ -1046,176 +1040,6 @@ Cat meows
 
 **Note:** Python is a dynamically typed language, and its method dispatch is generally dynamic.
 
-### 3. `isinstance()`
-- Checks whether an object is an instance of a particular class or its subclass.
-- Returns `True` or `False`.
-
-**Syntax:**
-```python
-isinstance(object, classinfo)
-```
-
-**Example:**
-```python
-class Animal:
-    pass
-
-
-class Dog(Animal):
-    pass
-
-
-d = Dog()
-
-print(isinstance(d, Dog))
-print(isinstance(d, Animal))
-print(isinstance(d, object))
-```
-
-**Output:**
-```text
-True
-True
-True
-```
-
-### 4. `issubclass()`
-- Checks whether a class is a subclass of another class.
-- Returns `True` or `False`.
-
-**Syntax:**
-```python
-issubclass(class, classinfo)
-```
-
-**Example:**
-```python
-class Animal:
-    pass
-
-
-class Dog(Animal):
-    pass
-
-
-print(issubclass(Dog, Animal))
-print(issubclass(Animal, Dog))
-```
-
-**Output:**
-```text
-True
-False
-```
-
-### 5. `type()`
-- Returns the exact type or class of an object.
-- It can also be used to create classes dynamically.
-
-**Example:**
-```python
-class Student:
-    pass
-
-
-s1 = Student()
-
-print(type(s1))
-print(type(10))
-print(type("Python"))
-```
-
-**Output:**
-```text
-<class '__main__.Student'>
-<class 'int'>
-<class 'str'>
-```
-
-**Difference between `type()` and `isinstance()`:**
-
-```python
-class Animal:
-    pass
-
-
-class Dog(Animal):
-    pass
-
-
-d = Dog()
-
-print(type(d) == Animal)
-print(isinstance(d, Animal))
-```
-
-**Output:**
-```text
-False
-True
-```
-
-- `type()` checks the exact class.
-- `isinstance()` also considers inheritance.
-
-### 6. `id()`
-- Returns the identity of an object.
-- It is commonly used to check whether two references point to the same object.
-
-**Example:**
-```python
-class Student:
-    pass
-
-
-s1 = Student()
-s2 = s1
-s3 = Student()
-
-print(id(s1))
-print(id(s2))
-print(id(s3))
-```
-
-**Explanation:**
-- `s1` and `s2` refer to the same object, so their IDs are equal.
-- `s3` refers to a different object, so its ID is different.
-
-### 7. `is` vs `==`
-
-- `==` checks whether two objects have equal values.
-- `is` checks whether two references point to the exact same object.
-
-**Example:**
-```python
-class Student:
-    def __init__(self, name):
-        self.name = name
-
-
-s1 = Student("Khushi")
-s2 = Student("Khushi")
-s3 = s1
-
-print(s1 == s2)
-print(s1 is s2)
-
-print(s1 is s3)
-```
-
-**Output:**
-```text
-False
-False
-True
-```
-
-**Explanation:**
-- `s1` and `s2` are different objects.
-- Without a custom `__eq__()` method, `==` uses the default object equality behavior.
-- `s1` and `s3` refer to the same object.
-
----
 
 # Object Copying
 
@@ -1275,7 +1099,6 @@ print(deep)
 [[1, 2], [3, 4]]
 [[100, 2], [3, 4]]
 ```
-
 
 **Important:** Both shallow and deep copying can be customized using `__copy__()` and `__deepcopy__()`.
 
@@ -1502,14 +1325,6 @@ Student(name='Khushi', age=22, marks=95)
 Khushi
 ```
 
-**Advantages:**
-1. Reduces boilerplate code.
-2. Automatically generates common methods.
-3. Makes data-oriented classes easier to write.
-4. Supports type annotations and default values.
-
 **Note:** Type annotations in dataclasses do not automatically enforce runtime type checking.
 
 ---
-=======
->>>>>>> 7f2a0f688ec77140d838e790d6e6c9d4dd4de952
