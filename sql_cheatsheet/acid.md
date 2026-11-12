@@ -357,7 +357,7 @@ Together, these properties protect the correctness and reliability of the transf
 
 ---
 
-# 8. Advantages of ACID Properties
+#  Advantages of ACID Properties
 
 1. **Data Reliability:** Helps ensure that database operations produce reliable results.
 2. **Data Integrity:** Prevents invalid or partially completed changes.
