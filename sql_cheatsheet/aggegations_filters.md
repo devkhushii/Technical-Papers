@@ -1,4 +1,4 @@
-# SQL Aggregations and Filtering – Quick Technical Paper
+# SQL Aggregations and Filtering
 
 ## Sample Data Used Throughout
 
